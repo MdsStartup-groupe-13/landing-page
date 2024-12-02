@@ -1,0 +1,42 @@
+# Ignore les fichiers node_modules (les dépendances sont installées dans l'image)
+node_modules/
+
+# Ignore les fichiers de log
+*.log
+
+# Ignore les fichiers temporaires de l'éditeur
+*.swp
+*.swo
+
+# Ignore les fichiers de configuration de l'IDE
+.vscode/
+
+# Ignore les fichiers de cache de Next.js
+.next/
+
+# Ignore les fichiers de tests
+coverage/
+
+# Ignore le fichier Dockerfile et le dossier .docker
+Dockerfile
+.docker/
+
+# Ignore les fichiers de configuration de Git
+.git/
+.gitignore
+
+# Ignore les fichiers de dépendances locales (par exemple, yarn.lock ou package-lock.json si vous voulez les inclure dans l'image)
+yarn.lock
+package-lock.json
+
+# Ignore les fichiers de répertoire de test
+test/
+tests/
+
+# Ignore les fichiers d'environnement locaux
+.env
+.env.local
+.env.*.local
+
+# Ignore les fichiers système comme .DS_Store (Mac)
+.DS_Store
