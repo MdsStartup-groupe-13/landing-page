@@ -1,0 +1,23 @@
+services:
+    web-app:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      container_name: mds-startup-web-app
+      ports:
+        - "3000:3000"
+      volumes:
+        - .:/app
+        - /app/node_modules
+      networks:
+        - routing
+      labels: # Configuration Traefik pour le service web
+        - "traefik.enable=true" # Active la gestion Traefik pour ce service
+        - "traefik.http.routers.web-app.rule=Host(`mydomain.com`)" # Règle pour router le domaine vers le service
+        - "traefik.http.routers.web-app.entrypoints=websecure" # Utilise l'entrée HTTPS
+        - "traefik.http.routers.web-app.tls=true" # Active le protocole HTTPS
+        - "traefik.http.routers.web-app.tls.certresolver=myresolver" # Résolution TLS via Let's Encrypt
+
+networks:
+  routing: 
+    driver: bridge # Utilisation du réseau bridge par défaut
