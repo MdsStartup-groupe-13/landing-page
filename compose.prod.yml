@@ -13,17 +13,12 @@ services:
       ports:
         - "80:80" # (HTTP)
         - "443:443" # (HTTPS)
-        - "8080:8080" # Port du tableau de bord Traefik
       volumes:
         - "/var/run/docker.sock:/var/run/docker.sock"
         - "./letsencrypt:/letsencrypt"
       networks:
-        - routing
-      labels:
-        - "traefik.http.routers.api.rule=Host(`dashboard.demo.fr`)" # Règle pour le tableau de bord Traefik
-        - "traefik.http.routers.api.service=api@internal" # Service interne Traefik
-        - "traefik.http.routers.api.entrypoints=websecure" # Utilisation de l'entrée HTTPS
-        - "traefik.http.routers.api.tls.certresolver=myresolver" # Résolution TLS pour les certificats
+        - vps-network
+
 
     web-app:
       build:
@@ -36,7 +31,7 @@ services:
         - .:/app
         - /app/node_modules
       networks:
-        - routing
+        - vps-network
       labels: # Configuration Traefik pour le service web
         - "traefik.enable=true" # Active la gestion Traefik pour ce service
         - "traefik.http.routers.web-app.rule=Host(`vps108078.serveur-vps.net`)" # Règle pour router le domaine vers le service
@@ -45,5 +40,5 @@ services:
         - "traefik.http.routers.web-app.tls.certresolver=myresolver" # Résolution TLS via Let's Encrypt
 
 networks:
-  routing: 
-    driver: bridge # Utilisation du réseau bridge par défaut
+  vps-network: 
+    external: true
