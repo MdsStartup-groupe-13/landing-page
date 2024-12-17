@@ -8,14 +8,15 @@ services:
         - "--entrypoints.web.address=:80" # Définit l'entrée HTTP sur le port 80
         - "--entrypoints.websecure.address=:443" # Définit l'entrée HTTPS sur le port 443
         - "--certificatesresolvers.myresolver.acme.tlschallenge=true" # Active le défi TLS pour les certificats Let's Encrypt
-        - "--certificatesresolvers.myresolver.acme.email=your@mail.com" # Adresse email utilisée pour Let's Encrypt
+        - "--certificatesresolvers.myresolver.acme.email=peter.binate.project@gmail.com" # Adresse email utilisée pour Let's Encrypt
         - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json" # Emplacement où stocker les certificats générés
       ports:
         - "80:80" # (HTTP)
         - "443:443" # (HTTPS)
       volumes:
-        - "/var/run/docker.sock:/var/run/docker.sock"
+        - "/var/run/docker.sock:/var/run/docker.sock:ro"
         - "./letsencrypt:/letsencrypt"
+        - 
       networks:
         - vps-network
 
@@ -38,6 +39,7 @@ services:
         - "traefik.http.routers.web-app.entrypoints=websecure" # Utilise l'entrée HTTPS
         - "traefik.http.routers.web-app.tls=true" # Active le protocole HTTPS
         - "traefik.http.routers.web-app.tls.certresolver=myresolver" # Résolution TLS via Let's Encrypt
+        - "traefik.http.services.wep-app.loadbalancer.server.port=3000"
 
 networks:
   vps-network: 
