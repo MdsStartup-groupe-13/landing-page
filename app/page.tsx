@@ -1,7 +1,9 @@
 import Header from "./components/Header";
 import HeroSection from "./components/HeroSection";
-import Footer from "./components/Footer";
 import PresentationSection from "./components/PresentationSection";
+import BenefitsSection from "./components/BenefitsSection";
+import Footer from "./components/Footer";
+import ContactForm from "./components/ContactForm";
 
 export default function Home() {
   return (
@@ -9,6 +11,8 @@ export default function Home() {
       <Header />
       <HeroSection />
       <PresentationSection />
+      <BenefitsSection />
+      <ContactForm />
       <Footer />
     </main>
   );

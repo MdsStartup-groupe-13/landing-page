@@ -21,74 +21,99 @@ const ContactForm = () => {
     e.preventDefault();
     setLoading(true);
     setResponseMessage('');
-  
+
     try {
       const templateParams = {
-        from_name: formData.name,     
-        from_email: formData.email,   
-        message: formData.message,    
-        to_name: "Bilal Boukhorissa", 
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_name: 'Bilal Boukhorissa',
       };
-  
+
       await emailjs.send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string, // Service ID
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string, // Template ID
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string,
         templateParams,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string // Public Key
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string
       );
-  
+
       setResponseMessage('✅ Votre message a bien été envoyé !');
       setFormData({ name: '', email: '', message: '' });
     } catch (error) {
-      console.error("Erreur lors de l'envoi :", error);
+      console.error('Erreur lors de l\'envoi :', error);
       setResponseMessage('❌ Une erreur est survenue. Veuillez réessayer.');
     } finally {
       setLoading(false);
     }
   };
-  
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col space-y-4 p-6 bg-gray-100 rounded-lg">
-      <h3 className="text-lg font-bold text-center text-gray-700">Contactez-nous</h3>
-      <input
-        type="text"
-        name="name"
-        placeholder="Votre nom"
-        value={formData.name}
-        onChange={handleChange}
-        className="p-2 border rounded text-black"
-        required
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="Votre email"
-        value={formData.email}
-        onChange={handleChange}
-        className="p-2 border rounded text-black"
-        required
-      />
-      <textarea
-        name="message"
-        placeholder="Votre message"
-        rows={4}
-        value={formData.message}
-        onChange={handleChange}
-        className="p-2 border rounded text-black"
-        required
-      />
-      <button
-        type="submit"
-        disabled={loading}
-        className={`p-2 text-white rounded ${
-          loading ? 'bg-gray-500' : 'bg-blue-500 hover:bg-blue-600'
-        }`}
+    <section className="bg-gradient-to-br from-gray-100 to-white py-16 px-8">
+      <div className="max-w-5xl mx-auto text-center mb-12">
+        <h2 className="text-4xl font-bold text-[#346473] mb-4">
+          Restons en contact
+        </h2>
+        <p className="text-lg text-gray-600">
+          Une question ? Besoin d’aide ? Contactez-nous via ce formulaire, et notre équipe vous répondra dans les plus brefs délais.
+        </p>
+      </div>
+      <form
+        onSubmit={handleSubmit}
+        className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-lg space-y-6"
       >
-        {loading ? 'Envoi...' : 'Envoyer'}
-      </button>
-      {responseMessage && <p className="text-center text-gray-700">{responseMessage}</p>}
-    </form>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <input
+            type="text"
+            name="name"
+            placeholder="Votre nom"
+            value={formData.name}
+            onChange={handleChange}
+            className="p-4 border rounded-lg text-black focus:ring-2 focus:ring-[#A600FF] focus:outline-none"
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Votre email"
+            value={formData.email}
+            onChange={handleChange}
+            className="p-4 border rounded-lg text-black focus:ring-2 focus:ring-[#A600FF] focus:outline-none"
+            required
+          />
+        </div>
+        <textarea
+          name="message"
+          placeholder="Votre message"
+          rows={5}
+          value={formData.message}
+          onChange={handleChange}
+          className="p-4 border rounded-lg text-black focus:ring-2 focus:ring-[#A600FF] focus:outline-none w-full"
+          required
+        />
+        <button
+          type="submit"
+          disabled={loading}
+          className={`w-full py-3 rounded-lg text-lg font-bold text-white transition-all ${
+            loading
+              ? 'bg-gray-500 cursor-not-allowed'
+              : 'bg-gradient-to-r from-[#A600FF] to-[#c2e920] hover:to-[#A600FF]'
+          }`}
+        >
+          {loading ? 'Envoi...' : 'Envoyer'}
+        </button>
+        {responseMessage && (
+          <p
+            className={`text-center text-lg font-semibold ${
+              responseMessage.startsWith('✅')
+                ? 'text-green-600'
+                : 'text-red-600'
+            }`}
+          >
+            {responseMessage}
+          </p>
+        )}
+      </form>
+    </section>
   );
 };
 

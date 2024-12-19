@@ -10,3 +10,33 @@
   body {
     color: black;
   }
+
+  @keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .animate-gradient {
+    animation: gradient 5s infinite;
+    background-size: 200% 200%;
+  }
+
+  @keyframes slow-gradient-move {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 75% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .animate-slow-gradient {
+    animation: slow-gradient-move 6s infinite;
+    background-size: 300% 300%;
+  }
+  
+  
