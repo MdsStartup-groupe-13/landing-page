@@ -1,0 +1,22 @@
+{
+    "name": "Myless",
+    "short_name": "Myless",
+    "description": "Myless révolutionne l'organisation de voyages en groupe : sondages interactifs, calendrier partagé, cagnottes et réservations simplifiées.",
+    "icons": [
+      {
+        "src": "/apple-touch-icon.png",
+        "sizes": "180x180",
+        "type": "image/png"
+      },
+      {
+        "src": "/favicon.ico",
+        "sizes": "32x32",
+        "type": "image/x-icon"
+      }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#A600FF",
+    "background_color": "#ffffff"
+  }
+  

@@ -1,82 +1,59 @@
-const Header = () => {
-  return (
-    <header className="flex justify-between items-center px-6 py-4 bg-white shadow-sm">
-      {/* Logo Section */}
-      <div className="flex items-center space-x-3">
-        <img src="/images/myless.svg" alt="Logo" className="h-10 w-auto" />
+const navItems = [
+  { label: 'Accueil', href: '#home' },
+  { label: 'À propos', href: '#about' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const Header = () => (
+  <header className="fixed top-0 w-full bg-white shadow-md z-50">
+    <div className="container mx-auto flex items-center px-6 py-4">
+      
+      {/* Logo à l’extrême gauche */}
+      <div className="flex-shrink-0 mr-auto">
+        <a href="#home" aria-label="Aller à l'accueil">
+          <img src="/images/myless.svg" alt="Logo Myless" className="h-12 w-auto" />
+        </a>
       </div>
-
-      {/* Navigation */}
-      <nav className="hidden md:flex space-x-6 text-gray-700">
-        <a href="#" className="hover:text-black">Home</a>
-        <div className="relative group">
-          <a href="#" className="hover:text-black flex items-center">
-            A propos
-          </a>
-          {/* Dropdown Menu */}
-          <div className="absolute left-0 mt-1 hidden group-hover:block bg-white shadow-md rounded-md">
-
-          </div>
-        </div>
-        <a href="#contact" className="hover:text-black">Contact</a>
+      
+      {/* Menu centré */}
+      <nav className="flex-1">
+        <ul className="flex justify-center space-x-10">
+          {navItems.map(({ label, href }) => (
+            <li key={href} className="group">
+              <a
+                href={href}
+                className="
+                  relative
+                  inline-block
+                  px-2 py-1
+                  text-gray-700 font-semibold uppercase tracking-wider
+                  transition-colors duration-200
+                  hover:text-black
+                  focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#A600FF]
+                "
+              >
+                {label}
+                {/* Soulignement animé */}
+                <span
+                  className="
+                    absolute left-0 bottom-0
+                    h-[2px] bg-[#A600FF]
+                    w-0
+                    group-hover:w-full
+                    group-focus:w-full
+                    transition-all duration-300 ease-out
+                  "
+                />
+              </a>
+            </li>
+          ))}
+        </ul>
       </nav>
+      
 
-      {/* Icons */}
-      <div className="flex items-center space-x-6 text-gray-700">
-        {/* Search Icon */}
-        <button aria-label="Search" className="flex items-center justify-center h-8 w-8">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-6 w-6"
-          >
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-        </button>
-
-        {/* Cart Icon */}
-        <button aria-label="Cart" className="flex items-center justify-center h-8 w-8">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-6 w-6"
-          >
-            <path d="M6 6h15l-1.68 9.24A2 2 0 0117.36 17H8.64a2 2 0 01-1.96-1.76L5 6z"></path>
-            <circle cx="9" cy="20" r="1"></circle>
-            <circle cx="18" cy="20" r="1"></circle>
-          </svg>
-        </button>
-
-        {/* User Icon */}
-        <button aria-label="User" className="flex items-center justify-center h-8 w-8">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="h-6 w-6"
-          >
-            <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
-        </button>
-      </div>
-    </header>
-  );
-};
+      <div className="ml-auto w-12" />
+    </div>
+  </header>
+);
 
 export default Header;
