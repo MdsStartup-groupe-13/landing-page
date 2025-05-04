@@ -38,12 +38,6 @@ const HeroSection = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </button>
-            <a
-              href="#about"
-              className="text-white underline text-base md:text-lg hover:text-gray-300 self-center"
-            >
-              En savoir plus
-            </a>
           </div>
 
           <div className="flex space-x-8 mt-8">
