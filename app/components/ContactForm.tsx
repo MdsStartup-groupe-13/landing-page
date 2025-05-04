@@ -49,6 +49,7 @@ const ContactForm = () => {
   return (
     <section aria-labelledby="contact-heading" className="bg-gradient-to-br from-gray-100 to-white py-16 px-8">
       <div className="max-w-5xl mx-auto text-center mb-12">
+        
         <h2 id="contact-heading" className="text-4xl font-bold text-[#346473] mb-4">
           Restons en contact
         </h2>

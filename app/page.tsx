@@ -35,13 +35,30 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="flex flex-col min-h-screen">
+    <>
       <Header />
-      <HeroSection />
-      <PresentationSection />
-      <BenefitsSection />
-      <ContactForm />
+
+      {/* Section Accueil */}
+      <section id="home" aria-label="Accueil">
+        <HeroSection />
+      </section>
+
+      {/* Section À propos */}
+      <section id="about" aria-label="À propos">
+        <PresentationSection />
+      </section>
+
+      {/* Section Services (ou Benefits) */}
+      <section id="services" aria-label="Services">
+        <BenefitsSection />
+      </section>
+
+      {/* Section Contact */}
+      <section id="contact" aria-label="Contact">
+        <ContactForm />
+      </section>
+
       <Footer />
-    </main>
+    </>
   )
 }
